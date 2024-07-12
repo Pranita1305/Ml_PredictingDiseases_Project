@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+        .title-container {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            padding: 20px 40px; /* Padding around the title */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); /* Glow effect */
+            animation: fadeIn 2s ease-in-out;
+        }
+        h1 {
+            margin: 0;
+            color: #FFFFFF; /* White color for better contrast */
+            font-size: 2.5em; /* Increased font size */
+            text-align: center;
+            animation: slideIn 1.5s ease-in-out;
+        }
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid layout */
+            gap: 20px; /* Gap between buttons */
+            max-width: 800px; /* Limit maximum width */
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background to enhance readability */
+            border-radius: 10px; /* Rounded corners for the container */
+            animation: fadeIn 2s ease-in-out;
+        }
+        .button-container .button {
+            display: inline-block;
+            padding: 15px 30px; /* Adjusted padding for larger buttons */
+            font-size: 18px; /* Increased font size */
+            text-align: center;
+            cursor: pointer;
+            background-color: #000000; /* Black background color */
+            color: #FFFFFF; /* White text for better contrast */
+            text-decoration: none;
+            border-radius: 25px; /* More rounded corners */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slightly darker shadow for better visibility */
+            animation: buttonAppear 1s ease-in-out;
+        }
+        .button-container .button:hover {
+            background-color: rgba(8, 145, 165, 0.7); /* Slightly less transparent on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes buttonAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="title-container">
+        <h1>Disease Prediction</h1>
+    </div>
+    <div class="button-container">
+        <a href="{% url 'prediction_breast_cancer_form' %}" class="button">Breast Cancer Prediction</a>
+        <a href="{% url 'prediction_depression_form' %}" class="button">Depression Prediction</a>
+        <a href="{% url 'prediction_skin_disease_form' %}" class="button">Skin Disease Prediction</a>
+        <a href="{% url 'prediction_diabetes_form' %}" class="button">Diabetes Prediction</a>
+        <a href="{% url 'prediction_stroke_form' %}" class="button">Stroke Prediction</a>
+        <a href="{% url 'prediction_kidney_disease_form' %}" class="button">Kidney Disease Prediction</a>
+        <a href="{% url 'prediction_heart_disease_form' %}" class="button">Heart Disease Prediction</a>
+        <a href="{% url 'prediction_parkinsson_disease_form' %}" class="button">Parkinson's Prediction</a>
+        <a href="{% url 'prediction_lung_cancer_form' %}" class="button">Lung Cancer Prediction</a>
+    </div>
+</body>
+</html>

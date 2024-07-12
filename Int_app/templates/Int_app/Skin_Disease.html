@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 10px;
+        }
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid black;
+            max-width: 1200px; /* Maximum width for the form */
+            width: 100%; /* Full width of its container */
+            max-height: 80vh; /* Max height for the form container */
+            overflow-y: auto; /* Add vertical scrollbar if needed */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: black;
+        }
+        input {
+            width: calc(100% - 16px); /* Full width minus padding */
+            padding: 8px;
+            border: 1px solid black;
+            border-radius: 5px;
+            color: black;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: 2px solid black;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px; /* Make the button round */
+            transition: background-color 0.3s, transform 0.3s;
+            width: auto;
+            min-width: 120px; /* Shorten the button size */
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Motion Animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .form-container {
+            animation: fadeIn 0.5s ease-in-out; /* Apply animation to form container */
+        }
+    </style>
+</head>
+<body>
+    <h1>Skin Disease Prediction</h1>
+    <div class="form-container">
+        <form method="POST" action="{% url 'predict_skin_disease' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="EMAIL" required>
+            </div>
+            <div class="form-group">
+                <label for="erythema">Erythema (Rate between 0-3):</label>
+                <input type="number" id="erythema" name="ERYTHEMA" required>
+            </div>
+            <div class="form-group">
+                <label for="scaling">Scaling (Rate between 0-3):</label>
+                <input type="number" id="scaling" name="SCALING" required>
+            </div>
+            <div class="form-group">
+                <label for="definite_borders">Definite Borders (Rate between 0-3):</label>
+                <input type="number" id="definite_borders" name="DEFINITE_BORDERS" required>
+            </div>
+            <div class="form-group">
+                <label for="itching">Itching (Rate between 0-3):</label>
+                <input type="number" id="itching" name="ITCHING" required>
+            </div>
+            <div class="form-group">
+                <label for="koebner_phenomenon">Koebner Phenomenon (Rate between 0-3):</label>
+                <input type="number" id="koebner_phenomenon" name="KOEBNER_PHENOMENON" required>
+            </div>
+            <div class="form-group">
+                <label for="polygonal_papules">Polygonal Papules (Rate between 0-3):</label>
+                <input type="number" id="polygonal_papules" name="POLYGONAL_PAPULES" required>
+            </div>
+            <div class="form-group">
+                <label for="follicular_papules">Follicular Papules (Rate between 0-3):</label>
+                <input type="number" id="follicular_papules" name="FOLLICULAR_PAPULES" required>
+            </div>
+            <div class="form-group">
+                <label for="mucosal_involvement">Oral Mucosal Involvement (Rate between 0-3):</label>
+                <input type="number" id="mucosal_involvement" name="ORAL_MUCOSAL_INVOLVEMENT" required>
+            </div>
+            <div class="form-group">
+                <label for="knee_elbow_involvement">Knee Elbow Involvement (Rate between 0-3):</label>
+                <input type="number" id="knee_elbow_involvement" name="KNEE_AND_ELBOW_INVOLVEMENT" required>
+            </div>
+            <div class="form-group">
+                <label for="scalp_involvement">Scalp Involvement (Rate between 0-3):</label>
+                <input type="number" id="scalp_involvement" name="SCALP_INVOLVEMENT" required>
+            </div>
+            <div class="form-group">
+                <label for="family_history">Family History (Rate between 0-3):</label>
+                <input type="number" id="family_history" name="FAMILY_HISTORY" required>
+            </div>
+            <div class="form-group">
+                <label for="melanin_incontinence">Melanin Incontinence (Rate between 0-3):</label>
+                <input type="number" id="melanin_incontinence" name="MELANIN_INCONTINENCE" required>
+            </div>
+            <div class="form-group">
+                <label for="eosinophils_infiltrate">Eosinophils Infiltrate (Rate between 0-3):</label>
+                <input type="number" id="eosinophils_infiltrate" name="EOSINOPHILS_INFILTRATE" required>
+            </div>
+            <div class="form-group">
+                <label for="PNL_infiltrate">PNL (Rate between 0-3):</label>
+                <input type="number" id="PNL_infiltrate" name="PNL_INFILTRATE" required>
+            </div>
+            <div class="form-group">
+                <label for="fibrosis_papillary_dermis">Fibrosis Papillary Dermis (Rate between 0-3):</label>
+                <input type="number" id="fibrosis_papillary_dermis" name="FIBROSIS_PAPILLARY_DERMIS" required>
+            </div>
+            <div class="form-group">
+                <label for="exocytosis">Exocytosis (Rate between 0-3):</label>
+                <input type="number" id="exocytosis" name="EXOCYTOSIS" required>
+            </div>
+            <div class="form-group">
+                <label for="acanthosis">Acanthosis (Rate between 0-3):</label>
+                <input type="number" id="acanthosis" name="ACANTHOSIS" required>
+            </div>
+            <div class="form-group">
+                <label for="hyperkeratosis">Hyperkeratosis (Rate between 0-3):</label>
+                <input type="number" id="hyperkeratosis" name="HYPERKERATOSIS" required>
+            </div>
+            <div class="form-group">
+                <label for="parakeratosis">Parakeratosis (Rate between 0-3):</label>
+                <input type="number" id="parakeratosis" name="PARAKERATOSIS" required>
+            </div>
+            <div class="form-group">
+                <label for="clubbing_ridges">Clubbing Ridges (Rate between 0-3):</label>
+                <input type="number" id="clubbing_ridges" name="CLUBBING_RETE_RIDGES" required>
+            </div>
+            <div class="form-group">
+                <label for="elongation_ridges">Elongation Ridges (Rate between 0-3):</label>
+                <input type="number" id="elongation_ridges" name="ELONGATION_RETE_RIDGES" required>
+            </div>
+            <div class="form-group">
+                <label for="thinning_epidermis">Thinning Epidermis (Rate between 0-3):</label>
+                <input type="number" id="thinning_epidermis" name="THINNING_SUPRAPAPILLARY_EPDERMIS" required>
+            </div>
+            <div class="form-group">
+                <label for="spongiform_postule">Spongiform Postule (Rate between 0-3):</label>
+                <input type="number" id="spongiform_postule" name="SPONGIFORM_PUSTULE" required>
+            </div>
+            <div class="form-group">
+                <label for="munro_microabcess">Munro Microabcess (Rate between 0-3):</label>
+                <input type="number" id="munro_microabcess" name="MUNRO_MICROABCESS" required>
+            </div>
+            <div class="form-group">
+                <label for="focal_hypergranulosis">Focal Hypergranulosis (Rate between 0-3):</label>
+                <input type="number" id="focal_hypergranulosis" name="FOCAL_HYPERGRANULOSIS" required>
+            </div>
+            <div class="form-group">
+                <label for="disappearance_granular_layer">Disappearance Granular Layer (Rate between 0-3):</label>
+                <input type="number" id="disappearance_granular_layer" name="DISAPPEARANCE_GRANULAR_LAYER" required>
+            </div>
+            <div class="form-group">
+                <label for="damage_basal_layer">Damage Basal Layer (Rate between 0-3):</label>
+                <input type="number" id="damage_basal_layer" name="VACUOLISATION_DAMAGE_BASAL_LAYER" required>
+            </div>
+            <div class="form-group">
+                <label for="spongiosis">Spongiosis (Rate between 0-3):</label>
+                <input type="number" id="spongiosis" name="SPONGIOSIS" required>
+            </div>
+            <div class="form-group">
+                <label for="saw_tooth_appearance">Saw-Tooth Appearance (Rate between 0-3):</label>
+                <input type="number" id="saw_tooth_appearance" name="SAW_TOOTH_APPEARANCE_RETSES" required>
+            </div>
+            <div class="form-group">
+                <label for="follicular_horn_plug">Follicular Horn Plug (Rate between 0-3):</label>
+                <input type="number" id="follicular_horn_plug" name="FOLLICULAR_HORN_PLUG" required>
+            </div>
+            <div class="form-group">
+                <label for="perifollicular_parakeratosis">Perifollicular Parakeratosis (Rate between 0-3):</label>
+                <input type="number" id="perifollicular_parakeratosis" name="PERIFOLLICULAR_PARAKERATOSIS" required>
+            </div>
+            <div class="form-group">
+                <label for="inflammatory_mononuclear_infiltrate">Inflammatory Mononuclear Infiltrate (Rate between 0-3):</label>
+                <input type="number" id="inflammatory_mononuclear_infiltrate" name="INFLAMMATORY_MONONUCLEAR_INFILTRATE" required>
+            </div>
+            <div class="form-group">
+                <label for="band_like_infiltrate">Band Like Infiltrate (Rate between 0-3):</label>
+                <input type="number" id="band_like_infiltrate" name="BAND_LIKE_INFILTRATE" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age (Rate between 0-3):</label>
+                <input type="number" id="age" name="AGE" required>
+            </div>
+            <button type="submit">Predict</button>
+
+        </form>
+    </div>
+</body>
+</html>

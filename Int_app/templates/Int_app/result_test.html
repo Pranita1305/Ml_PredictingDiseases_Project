@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Tests Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            transition: background-image 0.5s ease;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #fff; /* Changed color to white */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
+            border: 2px solid #fff; /* White border */
+            border-radius: 10px;
+            padding: 20px;
+            animation: fadeInUp 0.5s ease forwards; /* Added animation */
+        }
+        li {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #fff; /* White text */
+        }
+        p {
+            font-size: 18px;
+            color: #fff; /* White text */
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent black background */
+            border: 2px solid #fff; /* White border */
+            border-radius: 10px;
+            padding: 20px;
+            animation: fadeInUp 0.5s ease forwards; /* Added animation */
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Medical Tests Results</h1>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+        <ul>
+            {% for test in tests %}
+                <li>{{ test }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

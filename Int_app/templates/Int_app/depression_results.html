@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            color: #343a40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h1 {
+            color: #007bff;
+            margin-bottom: 10px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+            animation: slideInLeft 0.5s ease forwards;
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        a {
+            display: inline-block;
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text */
+            border: 2px solid black; /* Black border */
+            padding: 10px 20px; /* Padding */
+            cursor: pointer;
+            border-radius: 20px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Lift effect */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if error %}
+            <h1>Error</h1>
+            <p class="error">An error occurred: {{ error }}</p>
+            <a href="{% url 'prediction_depression_form' %}">Back to Form</a>
+        {% else %}
+            <h1>Depression Prediction Result</h1>
+            <p>Depression Rate: {{ prediction }}</p>
+            <p>Prediction : {{ prediction_label }}</p>
+            {% if chart_image %}
+                <img src="data:image/png;base64,{{ chart_image }}" alt="Prediction Chart">
+            {% endif %}
+            <a href="{% url 'prediction_depression_form' %}">Back to Form</a>
+        {% endif %}
+    </div>
+</body>
+</html>

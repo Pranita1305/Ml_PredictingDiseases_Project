@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Depression Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 10px;
+        }
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* White text shadow for better contrast */
+        }
+        form {
+            background-color: rgba(0, 0, 0, 0.8); /* Slightly transparent black background for the form */
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid black; /* Black border for the form */
+            max-width: 1200px; /* Maximum width for the form */
+            width: 100%; /* Full width of its container */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            overflow: auto; /* Add scrollbar if needed */
+            animation: fadeIn 1s ease-in-out; /* Fade-in animation */
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between input groups */
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+            color: white; /* Label color */
+        }
+        input {
+            flex: 1; /* Allow inputs to grow and shrink */
+            padding: 8px;
+            border: 1px solid black; /* Black border for inputs */
+            border-radius: 5px;
+            color: black; /* Input text color */
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: 2px solid black;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px; /* Make the button round */
+            transition: background-color 0.3s, transform 0.3s;
+            width: auto;
+            min-width: 120px; /* Shorten the button size */
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Depression Prediction</h1>
+    <form method="POST" action="{% url 'predict_depression' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="EMAIL" required>
+        </div>
+        <div class="form-group">
+            <label for="sleep">Insomnia (Rate between 1-6):</label>
+            <input type="number" id="sleep" name="SLEEP" required>
+        </div>
+        <div class="form-group">
+            <label for="appetite">Appetite Level(Rate between 1-6):</label>
+            <input type="number" id="appetite" name="APPETITE" required>
+        </div>
+        <div class="form-group">
+            <label for="interest">Loss of Interest in Doing Daily Routine Things(Rate between 1-6):</label>
+            <input type="number" id="interest" name="INTEREST" required>
+        </div>
+        <div class="form-group">
+            <label for="fatigue">Fatigue(Rate between 1-6):</label>
+            <input type="number" id="fatigue" name="FATIGUE" required>
+        </div>
+        <div class="form-group">
+            <label for="worthlessness">Feeling of Worthlessness(Rate between 1-6):</label>
+            <input type="number" id="worthlessness" name="WORTHLESSNESS" required>
+        </div>
+        <div class="form-group">
+            <label for="concentration">Concentration Issues(Rate between 1-6):</label>
+            <input type="number" id="concentration" name="CONCENTRATION" required>
+        </div>
+        <div class="form-group">
+            <label for="agitation">Agitation(Rate between 1-6):</label>
+            <input type="number" id="agitation" name="AGITATION" required>
+        </div>
+        <div class="form-group">
+            <label for="suicidal_thoughts">Suicidal Thoughts(Rate between 1-6):</label>
+            <input type="number" id="suicidal_thoughts" name="SUICIDAL_THOUGHTS" required>
+        </div>
+        <div class="form-group">
+            <label for="sleep_disorders">Sleep Disorder(Rate between 1-6):</label>
+            <input type="number" id="sleep_disorders" name="SLEEP_DISORDERS" required>
+        </div>
+        <div class="form-group">
+            <label for="aggression">Aggression(Rate between 1-6):</label>
+            <input type="number" id="aggression" name="AGGRESSION" required>
+        </div>
+        <div class="form-group">
+            <label for="panic_attacks">Panic Attacks(Rate between 1-6):</label>
+            <input type="number" id="panic_attacks" name="PANIC_ATTACKS" required>
+        </div>
+        <div class="form-group">
+            <label for="hopelessness">Feeling of Hopelessness(Rate between 1-6):</label>
+            <input type="number" id="hopelessness" name="HOPELESSNESS" required>
+        </div>
+        <div class="form-group">
+            <label for="restlessness">Feeling of Restlessness(Rate between 1-6):</label>
+            <input type="number" id="restlessness" name="RESTLESSNESS" required>
+        </div>
+        <div class="form-group">
+            <label for="low_energy">Feeling of Low Energy(Rate between 1-6):</label>
+            <input type="number" id="low_energy" name="LOW_ENERGY" required>
+        </div>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>
