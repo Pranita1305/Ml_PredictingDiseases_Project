@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 10px;
+        }
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        form {
+            background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white background for the form */
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid black; /* Black border for the form */
+            max-width: 1200px; /* Maximum width for the form */
+            width: 100%; /* Full width of its container */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+            overflow: auto; /* Add scrollbar if needed */
+            animation: slideInLeft 0.5s ease forwards;
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between input groups */
+            margin-bottom: 15px;
+            animation: zoomIn 0.5s ease forwards;
+        }
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        label {
+            display: block;
+            width: 100%;
+            margin-bottom: 5px;
+            color: black; /* Label color */
+        }
+        input {
+            flex: 1; /* Allow inputs to grow and shrink */
+            padding: 8px;
+            border: 1px solid black; /* Black border for inputs */
+            border-radius: 5px;
+            color: black; /* Input text color */
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: 2px solid black;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 20px; /* Make the button round */
+            transition: background-color 0.3s, transform 0.3s;
+            width: auto;
+            min-width: 120px; /* Shorten the button size */
+            margin-top: 10px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .nav-buttons {
+            margin-top: 10px; /* Add margin to create space between the buttons */
+            width: 100%;
+            display: flex;
+            justify-content: center; /* Center the button */
+        }
+        .nav-buttons .button {
+            display: inline-block;
+            background-color: #007BFF; /* Blue background color */
+            color: white;
+            border: 2px solid black;
+            padding: 10px 20px; /* Adjusted padding to match the 'Predict' button */
+            cursor: pointer;
+            border-radius: 20px; /* Matching border-radius */
+            text-decoration: none;
+            font-size: 16px; /* Matching font size */
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: auto;
+            min-width: 120px; /* Shorten the button size */
+            text-align: center;
+            margin-top: 10px; /* Add margin to create space between the buttons */
+        }
+        .nav-buttons .button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <h1>Heart Disease Prediction</h1>
+    <form method="POST" action="{% url 'predict_heart_disease' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="EMAIL" required>
+        </div>
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="AGE" required>
+        </div>
+        <div class="form-group">
+            <label for="sex">Sex (Male/Female):</label>
+            <input type="text" id="sex" name="SEX" required>
+        </div>
+        <div class="form-group">
+            <label for="chest_pain">Type of Chest Pain:</label>
+            <input type="text" id="chest_pain" name="CHEST_PAIN" required>
+        </div>
+        <div class="form-group">
+            <label for="resting_bp">Resting BP:</label>
+            <input type="number" id="resting_bp" name="RESTING_BP" required>
+        </div>
+        <div class="form-group">
+            <label for="cholestoral">Cholesterol Level:</label>
+            <input type="number" id="cholestoral" name="CHOLESTORAL" required>
+        </div>
+        <div class="form-group">
+            <label for="fasting_bp">Fasting BP:</label>
+            <input type="text" id="fasting_bp" name="FASTING_BP" required>
+        </div>
+        <div class="form-group">
+            <label for="ecg">Rest ECG Results:</label>
+            <input type="text" id="ecg" name="REST_ECG" required>
+        </div>
+        <div class="form-group">
+            <label for="max_heartrate">Max Heart Rate during Exercise:</label>
+            <input type="number" id="max_heartrate" name="MAX_HEARTRATE" required>
+        </div>
+        <div class="form-group">
+            <label for="exercise">Exercise Induced Angina:</label>
+            <input type="text" id="exercise" name="EXERCISE" required>
+        </div>
+        <div class="form-group">
+            <label for="old_peak">Old Peak:</label>
+            <input type="number" id="old_peak" name="OLD_PEAK" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="sloping">Sloping:</label>
+            <input type="text" id="sloping" name="SLOPING" required>
+        </div>
+        <div class="form-group">
+            <label for="vessels">Number of Major Vessels Colored by Fluoroscopy:</label>
+            <input type="text" id="vessels" name="VESSELS" required>
+        </div>
+        <div class="form-group">
+            <label for="thalassemia">Presence of Thalassemia:</label>
+            <input type="text" id="thalassemia" name="THALASSEMIA" required>
+        </div>
+        <button type="submit">Predict</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Prediction Website</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .nav-buttons .button {
+            display: inline-block;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 15px 30px; /* Adjusted padding for larger buttons */
+            margin: 10px; /* Adjusted margin for spacing */
+            cursor: pointer;
+            border-radius: 25px; /* More rounded corners */
+            text-decoration: none;
+            font-size: 18px; /* Increased font size */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-buttons .button:hover {
+            background-color: rgba(0, 0, 0, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        .nav-buttons .button:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        .content {
+            text-align: center;
+            padding-top: 20%;
+            color: white;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .content h1 {
+            font-size: 48px;
+            animation: slideIn 1.5s ease-in-out;
+        }
+        .content p {
+            font-size: 24px;
+            animation: slideIn 1.5s ease-in-out 0.5s;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .nav-buttons .button {
+            animation: buttonAppear 1s ease-in-out;
+        }
+        .nav-buttons .button:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        .nav-buttons .button:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        .nav-buttons .button:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+        .nav-buttons .button:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+        @keyframes buttonAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-buttons">
+        <a href="{% url 'disease_prediction' %}" class="button">Predict Disease</a>
+        <a href="{% url 'add_symptom' %}" class="button">Recommend Medication</a>
+        <a href="{% url 'fetch_medical_history' %}" class="button">Medical History</a>
+        <a href="{% url 'add_disease' %}" class="button">Medical Tests</a>
+        <a href="{% url 'logout' %}" class="button">Logout</a>
+    </div>
+    <div class="content">
+        <h1>Welcome to Health Predictor</h1>
+        <p>Predict your health risks and get medication recommendations.</p>
+    </div>
+</body>
+</html>

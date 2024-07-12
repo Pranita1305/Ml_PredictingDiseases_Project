@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Medical History</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0 10px;
+        }
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: rgba(0, 0, 0, 0.7); /* Transparent black */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h2 {
+            color: white; /* Heading color white */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+            color: white; /* Table text color white */
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #333; /* Table header background color dark */
+        }
+        tr:nth-child(even) {
+            background-color: #555; /* Table row background color darker */
+        }
+        tr:hover {
+            background-color: #777; /* Table row hover color even darker */
+        }
+        p.error {
+            color: red;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #aaa; /* Footer text color light */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if medical_history %}
+            <h2>Medical History for {{ medical_history.email }}</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Disease</th>
+                        <th>Prediction Value</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for prediction in medical_history.predictions %}
+                        <tr>
+                            <td>{{ prediction.disease }}</td>
+                            <td>{{ prediction.prediction_value }}</td>
+                            <td>{{ prediction.timestamp }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Medical Prediction System</p>
+    </div>
+</body>
+</html>

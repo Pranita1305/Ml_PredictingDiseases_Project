@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #007bff;
+        }
+        p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        a {
+            display: inline-block;
+            background-color: #007bff; /* Blue background */
+            color: white; /* White text */
+            border: 2px solid black; /* Black border */
+            padding: 10px 20px; /* Padding */
+            cursor: pointer;
+            border-radius: 20px; /* Rounded corners */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+        }
+        a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+            transform: translateY(-2px); /* Lift effect */
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if error %}
+            <h1>Error</h1>
+            <p class="error">An error occurred: {{ error }}</p>
+            <a href="{% url 'prediction_skin_disease_form' %}">Back to Form</a>
+        {% else %}
+            <h1>Skin Disease Prediction Result</h1>
+            <p>Skin Disease you may have : {{ prediction_label }}</p>
+            {% if chart_image %}
+                <img src="data:image/png;base64,{{ chart_image }}" alt="Prediction Chart">
+            {% endif %}
+            <a href="{% url 'prediction_skin_disease_form' %}">Back to Form</a>
+        {% endif %}
+    </div>
+</body>
+</html>

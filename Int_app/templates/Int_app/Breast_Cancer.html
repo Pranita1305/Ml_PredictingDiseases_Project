@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Prediction Website</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'Int_app/css/style.css' %}">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://static.vecteezy.com/system/resources/previews/001/372/951/original/simple-neon-stripes-colored-background-free-vector.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10px;
+        }
+        .background-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Make sure the iframe is behind other elements */
+            border: none;
+        }
+        .nav-buttons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1; /* Ensure buttons are above the iframe */
+        }
+        .nav-buttons .button {
+            display: inline-block;
+            background-color: rgba(100, 100, 100, 0.8); /* Adjusted to suit grey background */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-buttons .button:hover {
+            background-color: rgba(150, 150, 150, 0.9); /* Adjusted to suit grey background */
+            transform: translateY(-2px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        .nav-buttons .button:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4);
+        }
+        .content {
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 1; /* Ensure content is above the iframe */
+            animation: fadeIn 2s ease-in-out;
+            padding-top: 10%; /* Adjusted for better visibility */
+        }
+        .content h1 {
+            font-size: 48px;
+            animation: slideIn 1.5s ease-in-out;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Added text shadow for better visibility */
+        }
+        .content p {
+            font-size: 24px;
+            animation: slideIn 1.5s ease-in-out 0.5s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Added text shadow for better visibility */
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .nav-buttons .button {
+            animation: buttonAppear 1s ease-in-out;
+        }
+        .nav-buttons .button:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        .nav-buttons .button:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        .nav-buttons .button:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+        .nav-buttons .button:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+        @keyframes buttonAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .model-container {
+            position: relative;
+            width: 100%;
+            height: 400px; /* Adjust height as needed */
+            margin-top: 20px;
+            border: none;
+            background: transparent;
+            z-index: 1; /* Ensure it is above the background */
+        }
+        .model-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Embed the Spline iframe as a background -->
+    <iframe class="background-iframe" src="https://my.spline.design/untitled-0545cf39296e600821a0f3da4730ce3e/" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+    <div class="nav-buttons">
+        <a href="{% url 'disease_prediction' %}" class="button">Predict Disease</a>
+        <a href="{% url 'add_symptom' %}" class="button">Recommend Medication</a>
+        <a href="{% url 'fetch_medical_history' %}" class="button">Medical History</a>
+        <a href="{% url 'add_disease' %}" class="button">Medical Tests</a>
+        <a href="{% url 'logout' %}" class="button">Logout</a>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to Health Predictor</h1>
+        <p>Predict your health risks and get medication recommendations.</p>
+    </div>
+
+    <div class="model-container">
+        <iframe src='https://my.spline.design/untitled-0545cf39296e600821a0f3da4730ce3e/' frameborder='0'></iframe>
+    </div>
+</body>
+</html>
